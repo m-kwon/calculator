@@ -36,5 +36,30 @@ class Calculator {
     this.previousOperandElement = previousOperandElement;
     this.currentOperandElement = currentOperandElement;
     this.MAX_DIGITS = 16;
+    this.clearAll();
+  }
+
+  clearAll() {
+    this.currentOperand = "";
+    this.previousOperand = "";
+    this.currentResult = undefined;
+    this.operation = undefined;
+    this.displayingResult = false;
+    this.isFirstCalculation = true;
+  }
+
+  clear() {
+    if (
+      this.currentOperand === undefined ||
+      this.currentOperand === this.currentResult
+    ) {
+      return;
+    }
+
+    this.currentOperand = this.currentOperand.slice(0, -1);
+
+    if (this.currentOperand === "") {
+      this.currentOperand = "0";
+    }
   }
 }

@@ -1,3 +1,4 @@
+// BASIC OPERATORS
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
@@ -21,6 +22,7 @@ let operate = (operator, a, b) => {
   }
 }
 
+//Select DOM Elements
 const numberButtons = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const plusMinusButton = document.querySelector("[data-negative-positive]");
@@ -28,3 +30,11 @@ const clearButton = document.querySelector("[data-clear-last]");
 const allClearButton = document.querySelector("[data-all-clear]");
 const previousOperand = document.querySelector("[data-previous-operand]");
 const currentOperand = document.querySelector("[data-current-operand]");
+
+class Calculator {
+  constructor(previousOperandElement, currentOperandElement) {
+    this.previousOperandElement = previousOperandElement;
+    this.currentOperandElement = currentOperandElement;
+    this.MAX_DIGITS = 16;
+  }
+}

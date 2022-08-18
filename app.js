@@ -20,3 +20,11 @@ let operate = (operator, a, b) => {
       return null;
   }
 }
+
+const numberButtons = document.querySelectorAll("[data-number]");
+const operatorButtons = document.querySelectorAll("[data-operator]");
+const plusMinusButton = document.querySelector("[data-negative-positive]");
+const clearButton = document.querySelector("[data-clear-last]");
+const allClearButton = document.querySelector("[data-all-clear]");
+const previousOperand = document.querySelector("[data-previous-operand]");
+const currentOperand = document.querySelector("[data-current-operand]");

@@ -191,4 +191,11 @@ class Calculator {
       }
     }
   }
+
+  updateDisplay() {
+    this.currentOperandElement.innerText = this.formatDisplay(
+      this.currentOperand
+    );
+    this.previousOperandElement.innerText = this.previousOperand;
+  }
 }

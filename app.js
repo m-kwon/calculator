@@ -133,4 +133,13 @@ class Calculator {
       }
     }
   }
+
+  reverseSign() {
+    if (parseFloat(this.currentOperand) > 0) {
+      this.currentOperand = parseFloat(this.currentOperand) * -1;
+      this.currentOperand = this.currentOperand.toString();
+    } else if (this.currentOperand.includes("-")) {
+      this.currentOperand = this.currentOperand.substring(1);
+    }
+  }
 }

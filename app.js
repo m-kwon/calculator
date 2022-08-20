@@ -95,4 +95,42 @@ class Calculator {
       }
     }
   }
+
+  selectOperation(operation) {
+    if (this.currentOperand && !this.displayingResult) {
+      if (operation === "=" && this.previousOperand === "") {
+        return;
+      } else if (this.previousOperand.includes("=")) {
+        return;
+      }
+
+      if (this.currentOperand.slice(-1) === ".") {
+        this.currentOperand = this.currentOperand.slice(0, -1);
+        this.updateDisplay();
+      }
+
+      this.calculate();
+      this.operation = operation;
+      this.previousOperand += `${this.currentOperandElement.innerText} ${operation} `;
+
+      if (this.isFirstCalculation) {
+        this.currentOperand = "";
+        this.isFirstCalculation = false;
+      } else {
+        this.currentOperand = this.currentResult.toString();
+        this.displayingResult = true;
+      }
+    } else {
+      if (this.displayingResult) {
+        if (operation !== "=" && this.previousOperand.includes("=")) {
+          this.previousOperand = "";
+          this.calculate();
+          this.operation = operation;
+          this.previousOperand += `${this.currentOperandElement.innerText} ${operation} `;
+          this.currentOperand = "";
+          this.updateDisplay();
+        }
+      }
+    }
+  }
 }

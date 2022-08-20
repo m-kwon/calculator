@@ -169,8 +169,9 @@ class Calculator {
           return;
       }
     }
+  }
 
-    formatDisplay(number) {
+  formatDisplay(number) {
       const stringNumber = number.toString();
       const integerDigits = parseFloat(stringNumber.split(".")[0]);
       const decimalDigits = stringNumber.split(".")[1];
@@ -189,8 +190,8 @@ class Calculator {
       } else {
         return intergerDisplay;
       }
-    }
   }
+
 
   updateDisplay() {
     this.currentOperandElement.innerText = this.formatDisplay(
@@ -199,3 +200,34 @@ class Calculator {
     this.previousOperandElement.innerText = this.previousOperand;
   }
 }
+
+const calc = new Calculator(previousOperand, currentOperand);
+
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calc.appendNumber(button.innerText);
+    calc.updateDisplay();
+  });
+});
+
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calc.selectOperation(button.innerText);
+    calc.updateDisplay();
+  });
+});
+
+allClearButton.addEventListener("click", () => {
+  calc.clearAll();
+  calc.updateDisplay();
+});
+
+clearButton.addEventListener("click", () => {
+  calc.clear();
+  calc.updateDisplay();
+});
+
+plusMinusButton.addEventListener("click", () => {
+  calc.reverseSign();
+  calc.updateDisplay();
+});

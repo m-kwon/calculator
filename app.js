@@ -142,4 +142,32 @@ class Calculator {
       this.currentOperand = this.currentOperand.substring(1);
     }
   }
+
+  calculate() {
+    if (this.currentResult === undefined) {
+      this.currentResult = parseFloat(this.currentOperand);
+    } else {
+      let currentCalculation = parseFloat(this.currentOperand);
+      switch (this.operation) {
+        case "+":
+          this.currentResult = this.currentResult + currentCalculation;
+          break;
+        case "-":
+          this.currentResult = this.currentResult - currentCalculation;
+          break;
+        case "x":
+          this.currentResult = this.currentResult * currentCalculation;
+          break;
+        case "÷":
+          if (currentCalculation === 0) {
+            this.currentResult = "NaN";
+          } else {
+            this.currentResult = this.currentResult / currentCalculation;
+          }
+          break;
+        default:
+          return;
+      }
+    }
+  }
 }

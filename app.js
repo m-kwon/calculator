@@ -62,4 +62,37 @@ class Calculator {
       this.currentOperand = "0";
     }
   }
+
+  appendNumber(inputNumber) {
+    if (this.previousOperand.includes("=")) {
+      return;
+    }
+
+    if (this.displayingResult) {
+      this.currentOperand = "";
+      this.displayingResult = false;
+    }
+
+    if (inputNumber === "." && this.currentOperand.includes(".")) {
+      return;
+    }
+
+    if (this.currentOperand === "0") {
+      this.currentOperand = "";
+    }
+
+    if (inputNumber === "." && this.currentOperand === "") {
+      this.currentOperand = "0.";
+    } else {
+      if (this.currentOperand.length > 0) {
+        let numberPattern = /\d+/g;
+        let digits = this.currentOperand.match(numberPattern).join("");
+        if (digits.length < this.MAX_DIGITS) {
+          this.currentOperand += inputNumber;
+        }
+      } else {
+        this.currentOperand += inputNumber;
+      }
+    }
+  }
 }

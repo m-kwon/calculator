@@ -169,5 +169,26 @@ class Calculator {
           return;
       }
     }
+
+    formatDisplay(number) {
+      const stringNumber = number.toString();
+      const integerDigits = parseFloat(stringNumber.split(".")[0]);
+      const decimalDigits = stringNumber.split(".")[1];
+      let intergerDisplay;
+
+      if (isNaN(integerDigits) && this.currentResult !== "NaN") {
+        intergerDisplay = "";
+      } else {
+        intergerDisplay = integerDigits.toLocaleString("en", {
+          maximumFractionDigits: 0,
+        });
+      }
+
+      if (decimalDigits != null) {
+        return `${intergerDisplay}.${decimalDigits}`;
+      } else {
+        return intergerDisplay;
+      }
+    }
   }
 }

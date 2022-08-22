@@ -201,6 +201,57 @@ class Calculator {
   }
 }
 
+const keyboardControls = (event) => {
+  // prettier-ignore
+  const KEYS = [
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+    ".", "+", "-", "*", "x", "X", "/", "=",
+    "Enter", "Backspace", "Delete",
+  ];
+  const key = event.key;
+  if (!KEYS.includes(event.key)) {
+    return;
+  } else {
+    switch (key) {
+      case "Backspace":
+        calc.clear();
+        calc.updateDisplay();
+        break;
+      case "Delete":
+        calc.clearAll();
+        calc.updateDisplay();
+        break;
+      case "Enter":
+      case "=":
+        event.preventDefault();
+        calc.selectOperation("=");
+        calc.updateDisplay();
+        break;
+      case "/":
+        calc.selectOperation("÷");
+        calc.updateDisplay();
+        break;
+      case "*":
+      case "x":
+      case "X":
+        calc.selectOperation("x");
+        calc.updateDisplay();
+        break;
+      case "+":
+        calc.selectOperation("+");
+        calc.updateDisplay();
+        break;
+      case "-":
+        calc.selectOperation("-");
+        calc.updateDisplay();
+        break;
+      default:
+        calc.appendNumber(event.key);
+        calc.updateDisplay();
+    }
+  }
+};
+
 const calc = new Calculator(previousOperand, currentOperand);
 
 numberButtons.forEach((button) => {
@@ -231,3 +282,5 @@ plusMinusButton.addEventListener("click", () => {
   calc.reverseSign();
   calc.updateDisplay();
 });
+
+document.addEventListener("keydown", keyboardControls);
